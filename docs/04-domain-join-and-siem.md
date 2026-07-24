@@ -17,6 +17,8 @@ Confirm from the DC:
 Get-ADComputer -Filter * | Select-Object Name, DNSHostName, Enabled
 ```
 
+![ADUC showing domain-joined computers](../img/04-aduc-domain-joined-computers.png)
+
 Both the workstation and the SIEM host showed up under `CN=Computers` once joined.
 
 ## Linux domain join
@@ -92,8 +94,18 @@ sudo systemctl status wazuh-agent
 Healthy output shows `wazuh-execd`, `wazuh-agentd`, `wazuh-syscheckd`, `wazuh-logcollector`,
 and `wazuh-modulesd` all running under the `wazuh-agent.service` cgroup.
 
-**Verification.** The manager dashboard confirmed both agents active — the Windows 10 LTSC
-workstation and the Server 2022 DC, both on agent v4.14.3, both reporting to `node01`.
+**Verification.**
+
+![Wazuh endpoints summary](../img/04-wazuh-endpoints-summary.png)
+
+*Two agents active, nothing disconnected or stuck pending. "Pending" usually means
+enrollment succeeded but the agent can't reach 1514 — worth checking before assuming
+the deployment worked.*
+
+![Wazuh agent detail](../img/04-wazuh-agents-list.png)
+
+*Both endpoints reporting: the Windows 10 LTSC workstation and the Server 2022 DC, agent
+v4.14.3, both attached to `node01`.*
 
 ## Why this matters for the rest of the lab
 

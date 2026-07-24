@@ -68,6 +68,12 @@ from Event Viewer and Autoruns, mapped it to MITRE ATT&CK, and worked it through
 SANS IR framework. Write-up includes an honest lessons-learned section on what I'd do
 differently. → [docs/06](docs/06-windows-incident-response.md)
 
+![Event Viewer capturing the malicious PowerShell invocation](img/06-eventviewer-powershell-600.png)
+
+*Event ID 600. The `HostApplication` field preserved the full command line — execution
+policy bypassed, window hidden, payload path — even though the script deleted itself
+afterward.*
+
 **Defensive audit of a deliberately broken environment.** Ten distinct findings —
 anonymous FTP, `PermitRootLogin yes`, an SSH banner pointed at `/etc/shadow`, credential
 reuse across every account, disabled Defender — each with impact and a concrete fix.

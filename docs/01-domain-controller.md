@@ -48,6 +48,11 @@ Standing up the forest root from a bare Windows Server 2022 VM.
    Resolve-DnsName team17.lab
    ```
 
+   ![Server Manager showing the promoted domain controller](../img/01-dc-server-manager.png)
+
+   *Post-promotion. The Domain field is populated rather than showing a workgroup, which
+   is the fastest visual confirmation that promotion succeeded.*
+
 ## Notes
 
 **DNS is the part that bites you.** AD is entirely dependent on DNS SRV records for

@@ -85,6 +85,17 @@ Set-GPRegistryValue -Name 'core-baseline' `
 gpupdate /force
 ```
 
+![GPO creation via PowerShell](../img/03-gpo-creation-powershell.png)
+
+*Tearing down and rebuilding the GPO from script. Each `Set-GPRegistryValue` call
+increments `UserVersion` or `ComputerVersion` depending on which side of the policy it
+targets, so the version numbers climbing across the output is a useful signal that
+settings are actually landing.*
+
+![gpupdate applying the policy](../img/03-gpo-gpupdate-applied.png)
+
+*Final state at ComputerVersion 3, followed by a clean `gpupdate /force` on the client.*
+
 `gpupdate /force` on the client, then confirm with `gpresult /h report.html` to see which
 policies actually applied and which were filtered out — worth checking, because a GPO
 that's linked but not applying looks identical to one that's working until you go looking.

@@ -112,13 +112,20 @@ logged 1/21/2026 11:06:54 AM, captured the full `HostApplication` string:
 powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\Users\dada-student\Videos\psspssp.ps1
 ```
 
+![Event Viewer PowerShell Event ID 600](../img/06-eventviewer-powershell-600.png)
+
 That single field gave me the payload path, the bypass flag, and the execution timestamp
 in one line, and anchored the timeline. Correlating against Security-log logon events tied
 execution to user logon rather than a scheduled task.
 
-**Autoruns** — confirmed the persistence mechanism. Listed `fun.bat` under the Logon tab,
-flagged `(Not Verified)`, pointing at the Startup folder path. This is what established
-that the chain would re-execute rather than being a one-off.
+**Autoruns** — confirmed the persistence mechanism.
+
+![Autoruns showing fun.bat persistence](../img/06-autoruns-funbat-persistence.png)
+
+`fun.bat` appears under the Logon tab, highlighted and flagged `(Not Verified)`, pointing
+at the per-user Startup folder. Every other entry in the view carries a verified Microsoft
+signature — the contrast is what makes the outlier obvious at a glance. This is what
+established that the chain would re-execute on every logon rather than being a one-off.
 
 **Not used — and that's the finding.** Process Monitor, Process Explorer, and Sysmon were
 all available and I didn't use any of them. See lessons learned.
