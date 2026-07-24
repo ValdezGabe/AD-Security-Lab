@@ -78,27 +78,3 @@ three separate policy sets for three scenarios (a locked-down point-of-sale term
 remotely administered kiosk in a hostile physical environment, and an isolated malware
 analysis workstation) and justified each setting against that scenario's threat model.
 → [docs/03](docs/03-group-policy.md)
-
----
-
-## ⚠️ Note on intentionally insecure configuration
-
-Parts of this lab **deliberately weaken** the environment — `Set-CoreGpo.ps1` disables
-the Windows Firewall across all three profiles, and the malware-analysis scenario in
-docs/03 turns off Defender and real-time protection.
-
-These are not recommendations. They exist because the lab requires a vulnerable target to
-audit and respond against, and because a malware-analysis host genuinely does need
-AV disabled to function. Every one of these settings is flagged as a finding in
-[docs/05](docs/05-environment-audit.md) with its remediation.
-
-Do not lift these configurations into a production environment.
-
----
-
-## Provenance
-
-Coursework-derived, rewritten for portfolio use. Credentials, personal identifiers, and
-collaborator names have been removed; passwords in scripts are prompted for at runtime
-rather than hardcoded. Group labs were completed with a five-person team — the
-documentation and analysis here is my own work.
